@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "husky install",
+    "lint": "eslint . --ext .ts",
     "test": "jest --passWithNoTests --runInBand",
     "test:unit": "yarn test --watch -c jest-unit-config.js",
     "test:integration": "yarn test --watch -c jest-integration-config.js",
@@ -35,5 +36,11 @@
   },
   "dependencies": {
     "validator": "^13.7.0"
+  },
+  "lint-staged": {
+    "**.*.{js, jsx, ts, tsx}": [
+      "yarn eslint --fix",
+      "yarn test --watchAll=false --findRelatedTests"
+    ]
   }
 }
