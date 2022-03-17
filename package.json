@@ -39,8 +39,9 @@
   },
   "lint-staged": {
     "**.*.{js, jsx, ts, tsx}": [
-      "yarn eslint --fix",
-      "yarn test --watchAll=false --findRelatedTests"
+      "eslint 'src/**' --fix",
+      "yarn test:staged",
+      "git add"
     ]
   }
 }
