@@ -22,7 +22,7 @@ export class LoginController implements Controller {
         return new Promise(resolve => resolve(badRequest(new InvalidParamError('email'))))
       }
     } catch (error) {
-      return serverError()
+      return serverError(error)
     }
   }
 }
