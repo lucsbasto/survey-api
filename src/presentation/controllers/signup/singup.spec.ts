@@ -1,7 +1,7 @@
 import { EmailValidator, AddAccount, AddAccountModel, AccountModel, HttpRequest } from './signup.protocols'
 import { MissingParamError, InvalidParamError } from '../../errors'
 import { SignUpController } from './singup'
-import { serverError } from '../../helpers/http-helper'
+import { ok, serverError } from '../../helpers/http-helper'
 
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
@@ -59,6 +59,16 @@ const makeFakeRequest = (): HttpRequest => {
     }
   }
   return httpRequest
+}
+
+const makeFakeAccount = (): AccountModel => {
+  const fakeAccount = {
+    id: 'valid_id',
+    name: 'valid_name',
+    email: 'valid_email@mail.com',
+    password: 'valid_password'
+  }
+  return fakeAccount
 }
 
 describe('SignUp Controller', () => {
@@ -191,12 +201,6 @@ describe('SignUp Controller', () => {
   test('should return 200 if valid data is provided', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(makeFakeRequest())
-    expect(httpResponse.statusCode).toBe(200)
-    expect(httpResponse.body).toEqual({
-      id: 'valid_id',
-      name: 'valid_name',
-      email: 'valid_email@mail.com',
-      password: 'valid_password'
-    })
+    expect(httpResponse).toEqual(ok(makeFakeAccount()))
   })
 })
