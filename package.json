@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "sucrase-node src/main/server.ts",
+    "clear:jest": "jest --clearCache",
     "postinstall": "husky install",
     "lint": "eslint . --ext .ts",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",

@@ -35,14 +35,14 @@ describe('POST /signup', () => {
       accountCollection.insertOne({
         name: 'Lucas Bastos',
         email: 'lucsbasto@gmail.com',
-        password: '123'
+        password
       })
 
       await request(app)
         .post('/api/login')
         .send({
           email: 'lucsbasto@gmail.com',
-          password
+          password: '123'
         }).expect(200)
     })
   })
