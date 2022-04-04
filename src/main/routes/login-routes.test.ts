@@ -1,6 +1,10 @@
 import { MongoHelper } from '../../infra/db/mongodb/helpers/mongo-helper'
 import request from 'supertest'
 import app from '../config/app'
+import { Collection } from 'mongodb'
+import { hash } from 'bcrypt'
+
+let accountCollection: Collection
 
 describe('POST /signup', () => {
   beforeAll(async () => {
@@ -11,7 +15,7 @@ describe('POST /signup', () => {
   })
 
   beforeEach(async () => {
-    const accountCollection = await MongoHelper.getCollection('accounts')
+    accountCollection = await MongoHelper.getCollection('accounts')
     await accountCollection.deleteMany({})
   })
   test('Should return 200 on signup', async () => {
@@ -24,5 +28,32 @@ describe('POST /signup', () => {
         passwordConfirmation: '123'
       })
       .expect(200)
+  })
+  describe('POST /login', () => {
+    test('Should return 200 on login', async () => {
+      const password = await hash('123', 12)
+      accountCollection.insertOne({
+        name: 'Lucas Bastos',
+        email: 'lucsbasto@gmail.com',
+        password: '123'
+      })
+
+      await request(app)
+        .post('/api/login')
+        .send({
+          email: 'lucsbasto@gmail.com',
+          password
+        }).expect(200)
+    })
+  })
+  describe('POST /login', () => {
+    test('Should return 401 on login if invalid credentials be provided', async () => {
+      await request(app)
+        .post('/api/login')
+        .send({
+          email: 'lucsbasto@gmail.com',
+          password: '123'
+        }).expect(401)
+    })
   })
 })
