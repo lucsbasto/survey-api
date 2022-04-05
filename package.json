@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "sucrase-node src/main/server.ts",
+    "start": "node dist/main/server.js",
+    "build": "rimraf dist && tsc",
+    "dev": "sucrase-node src/main/server.ts",
     "clear:jest": "jest --clearCache",
     "postinstall": "husky install",
     "lint": "eslint . --ext .ts",
@@ -38,6 +40,7 @@
     "husky": "^7.0.0",
     "jest": "^27.4.7",
     "lint-staged": "^12.1.5",
+    "rimraf": "^3.0.2",
     "sucrase": "^3.20.3",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.2",
