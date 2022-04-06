@@ -13,10 +13,12 @@ services:
     build: .
     restart: always
     image: survey-api
-    command: npm start
+    command: npm run debug
     volumes:
       - ./dist:/usr/src/survey-api/dist
+      - ./package.json:/usr/src/survey-api/package.json
     ports:
-      - "4000:5050"
+      - "5050:5050"
+      - "9222:9222"
     links:
       - mongo
