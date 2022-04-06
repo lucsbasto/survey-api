@@ -1,5 +1,5 @@
 export default {
-  mongoUrl: process.env.MONGO_URL || 'mongodb+srv://admin:AQ8QoDttMimVyLML@cluster0.kmzto.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  mongoUrl: process.env.MONGO_URL || 'mongodb://mongo:27017/survey-api',
   port: process.env.PORT || 5050,
   jwtSecret: process.env.JWT_SECRET || 'secret'
 }
