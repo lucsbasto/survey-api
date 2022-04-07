@@ -11,10 +11,10 @@ O objetivo do treinamento é mostrar como criar uma API com uma arquitetura bem 
 
 - [x] [Cadastro](./requirements/signup.md)
 - [x] [Login](./requirements/login.md)
-- [ ] [Criar enquete]
-- [ ] [Listar enquetes]
-- [ ] [Responder enquete]
-- [ ] [Resultado da enquete]
+- [ ] Criar enquete
+- [ ] Listar enquetes
+- [ ] Responder enquete
+- [ ] Resultado da enquete
 
 > ## Princípios
 
