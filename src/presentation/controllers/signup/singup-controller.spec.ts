@@ -72,16 +72,6 @@ const makeFakeRequest = (): HttpRequest => {
   return httpRequest
 }
 
-const makeFakeAccount = (): AccountModel => {
-  const fakeAccount = {
-    id: 'valid_id',
-    name: 'valid_name',
-    email: 'valid_email@mail.com',
-    password: 'valid_password'
-  }
-  return fakeAccount
-}
-
 describe('SignUp Controller', () => {
   test('should call AddAccount with correct values', async () => {
     const { sut, addAccountStub } = makeSut()
@@ -113,10 +103,10 @@ describe('SignUp Controller', () => {
     expect(httpResponse).toEqual(serverError(new Error()))
   })
 
-  test('should return 200 if valid data is provided', async () => {
+  test('should return an accessToken on success', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(makeFakeRequest())
-    expect(httpResponse).toEqual(ok(makeFakeAccount()))
+    expect(httpResponse).toEqual(ok({ accessToken: 'any_token' }))
   })
 
   test('should call Validation with correct values', async () => {
