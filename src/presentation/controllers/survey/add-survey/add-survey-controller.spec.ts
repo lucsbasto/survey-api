@@ -1,6 +1,7 @@
 import { HttpRequest, Validation, AddSurvey, AddSurveyModel } from './add-survey-controller.protocols'
 import { AddSurveyController } from './add-survey-controller'
 import { badRequest, noContent, serverError } from '../../../helpers/http/http-helper'
+import { MissingParamError } from '../../../errors'
 
 const makeFakeRequest = (): HttpRequest => ({
   body: {
@@ -54,9 +55,9 @@ describe('AddSurvey Controller', () => {
   })
   test('should return 400 if Validation returns an error', async () => {
     const { sut, validationStub } = makeSut()
-    jest.spyOn(validationStub, 'validate').mockReturnValueOnce(new Error())
+    jest.spyOn(validationStub, 'validate').mockReturnValueOnce(new MissingParamError('any_field'))
     const httpResponse = await sut.handle(makeFakeRequest())
-    expect(httpResponse).toEqual(badRequest(new Error()))
+    expect(httpResponse).toEqual(badRequest(new MissingParamError('any_field')))
   })
   test('should call AddSurvey with correct values', async () => {
     const { sut, addSurveyStub } = makeSut()
