@@ -17,7 +17,6 @@ module.exports = {
     'protocols',
     'jestGlobalMocks.ts',
     '.module.ts',
-    '<rootDir>/src/app/main.ts',
     '.mock.ts'
   ]
 }

@@ -10,7 +10,7 @@
     "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy dist/main/server.js",
     "up": "npm run build && docker-compose up -d",
     "down": "docker-compose down",
-    "clear:jest": "jest --clearCache",
+    "clearJest": "jest --clearCache",
     "postinstall": "husky install",
     "lint": "eslint . --ext .ts",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
