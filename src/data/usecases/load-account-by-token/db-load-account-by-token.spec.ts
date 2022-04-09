@@ -2,7 +2,6 @@ import { Decrypter } from '../../protocols/criptography/decrypter'
 import { AccountModel } from '../add-account/db-add-account.protocols'
 import { DbLoadAccountByToken } from './db-load-account-by-token'
 import { LoadAccountByTokenRepository } from '../../../data/protocols/db/account/load-account-by-token-repository'
-
 const makeFakeAccount = (): AccountModel => ({
   id: 'any_id',
   name: 'any_name',
@@ -75,5 +74,17 @@ describe('DbLoadAccountByToken Usecase', () => {
     const { sut } = makeSut()
     const account = await sut.load('any_token', 'any_role')
     expect(account).toEqual(makeFakeAccount())
+  })
+  test('should throw if Decrypter throws', async () => {
+    const { sut, decrypterStub } = makeSut()
+    jest.spyOn(decrypterStub, 'decrypt').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    const promise = sut.load('any_token', 'any_role')
+    await expect(promise).rejects.toThrow()
+  })
+  test('should throw if Decrypter throws', async () => {
+    const { sut, decrypterStub } = makeSut()
+    jest.spyOn(decrypterStub, 'decrypt').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    const promise = sut.load('any_token', 'any_role')
+    await expect(promise).rejects.toThrow()
   })
 })
