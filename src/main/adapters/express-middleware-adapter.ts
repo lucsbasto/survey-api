@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express'
 export const adaptMiddleware = (middleware: Middleware) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const httpRequest: HttpRequest = {
-      body: req.body
+      headers: req.headers
     }
     const httpResponse = await middleware.handle(httpRequest)
     if (httpResponse.statusCode === 200) {
