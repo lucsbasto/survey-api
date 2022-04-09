@@ -19,7 +19,7 @@ const makeFakeAccount = (): AccountModel => {
 }
 const makeLoadAccountByToken = (): LoadAccountByToken => {
   class LoadAccountByTokenStub implements LoadAccountByToken {
-    async loadByToken (accessToken: string): Promise<AccountModel> {
+    async load (accessToken: string): Promise<AccountModel> {
       const account = makeFakeAccount()
       return new Promise(resolve => resolve(account))
     }
@@ -41,9 +41,9 @@ describe('Auth Middleware', () => {
     const httpResponse = await sut.handle({})
     expect(httpResponse).toEqual(forbidden(new AccessDeniedError()))
   })
-  test('should call  LoadAccountByToken with correct accessToken', async () => {
+  test('should call LoadAccountByToken with correct accessToken', async () => {
     const { sut, loadAccountByTokenStub } = makeSut()
-    const loadByTokenSpy = jest.spyOn(loadAccountByTokenStub, 'loadByToken')
+    const loadByTokenSpy = jest.spyOn(loadAccountByTokenStub, 'load')
     const httpRequest: HttpRequest = {
       headers: {
         'x-access-token': 'any_token'
