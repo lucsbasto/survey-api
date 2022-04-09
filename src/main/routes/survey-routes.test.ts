@@ -17,7 +17,7 @@ describe('POST /surveys', () => {
     surveyCollection = await MongoHelper.getCollection('surveys')
     await surveyCollection.deleteMany({})
   })
-  test('Should return 204 on signup', async () => {
+  test('Should return 403 on add survey without accessToken', async () => {
     await request(app)
       .post('/api/surveys')
       .send({
@@ -31,6 +31,6 @@ describe('POST /surveys', () => {
           answer: 'Answer 2'
         }]
       })
-      .expect(204)
+      .expect(403)
   })
 })
