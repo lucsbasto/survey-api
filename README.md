@@ -1,3 +1,7 @@
+[![Build Status](https://app.travis-ci.com/lucsbasto/survey-api.svg?branch=main)](https://app.travis-ci.com/lucsbasto/survey-api)
+
+[![Coverage Status](https://coveralls.io/repos/github/lucsbasto/survey-api/badge.svg?branch=main)](https://coveralls.io/github/lucsbasto/survey-api?branch=main)
+
  **Clean Node API**
 
 ---
