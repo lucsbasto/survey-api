@@ -13,12 +13,12 @@ O objetivo do treinamento é mostrar como criar uma API com uma arquitetura bem 
 
 > ## APIs construídas no treinamento
 
-- [x] [Cadastro](./requirements/signup.md)
-- [x] [Login](./requirements/login.md)
-- [x] [Criar enquete](./requirements/add-survey.md)
-- [ ] [Listar enquetes](./requirements/load-surveys.md)
-- [ ] [Responder enquete](./requirements/save-survey-result.md)
-- [ ] [Resultado da enquete](./requirements/load-survey-result.md)
+- ✅ [Cadastro](./requirements/signup.md)
+- ✅ [Login](./requirements/login.md)
+- ✅ [Criar enquete](./requirements/add-survey.md)
+- ⛔ [Listar enquetes](./requirements/load-surveys.md)
+- ⛔ [Responder enquete](./requirements/save-survey-result.md)
+- ⛔ [Resultado da enquete](./requirements/load-survey-result.md)
 
 > ## Princípios
 
