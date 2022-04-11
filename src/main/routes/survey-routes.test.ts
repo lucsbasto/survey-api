@@ -101,3 +101,24 @@ describe('POST /surveys', () => {
       .expect(403)
   })
 })
+
+describe('GET /surveys', () => {
+  beforeAll(async () => {
+    await MongoHelper.connect(process.env.MONGO_URL)
+  })
+  afterAll(async () => {
+    await MongoHelper.disconnect()
+  })
+
+  beforeEach(async () => {
+    surveyCollection = await MongoHelper.getCollection('surveys')
+    accountCollection = await MongoHelper.getCollection('accounts')
+    await surveyCollection.deleteMany({})
+    await accountCollection.deleteMany({})
+  })
+  test('Should return 403 on get survey without accessToken', async () => {
+    await request(app)
+      .get('/api/surveys')
+      .expect(403)
+  })
+})
