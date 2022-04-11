@@ -1,5 +1,7 @@
 import { AddSurveyModel } from '../../../../domain/usecases/add-survey'
 
 export class AddSurveyRepository {
-  add: (data: AddSurveyModel) => Promise<void>
+  async add (data: AddSurveyModel): Promise<void> {
+    return new Promise(resolve => resolve(null))
+  }
 }
