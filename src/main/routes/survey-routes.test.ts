@@ -153,4 +153,24 @@ describe('GET /surveys', () => {
       .set('x-access-token', accessToken)
       .expect(200)
   })
+  test('Should return 204 on load survey no survey are founded', async () => {
+    const res = await accountCollection.insertOne({
+      name: 'user',
+      email: 'user@user.com',
+      password: 'user'
+    })
+    const id = res.ops[0]._id
+    const accessToken = sign({ id }, env.jwtSecret)
+    await accountCollection.updateOne({
+      _id: id
+    }, {
+      $set: {
+        accessToken
+      }
+    })
+    await request(app)
+      .get('/api/surveys')
+      .set('x-access-token', accessToken)
+      .expect(204)
+  })
 })
