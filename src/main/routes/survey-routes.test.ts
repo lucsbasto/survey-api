@@ -121,4 +121,36 @@ describe('GET /surveys', () => {
       .get('/api/surveys')
       .expect(403)
   })
+  test('Should return 200 on load survey with valid accessToken', async () => {
+    const res = await accountCollection.insertOne({
+      name: 'user',
+      email: 'user@user.com',
+      password: 'user'
+    })
+    await surveyCollection.insertOne({
+      question: 'Question',
+      answers: [{
+        image: 'http://image-name.com',
+        answer: 'Answer 1'
+      },
+      {
+        image: 'http://image2-name.com',
+        answer: 'Answer 2'
+      }]
+    })
+
+    const id = res.ops[0]._id
+    const accessToken = sign({ id }, env.jwtSecret)
+    await accountCollection.updateOne({
+      _id: id
+    }, {
+      $set: {
+        accessToken
+      }
+    })
+    await request(app)
+      .get('/api/surveys')
+      .set('x-access-token', accessToken)
+      .expect(200)
+  })
 })
