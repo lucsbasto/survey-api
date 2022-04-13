@@ -11,8 +11,8 @@
     "lint": "eslint . --ext .ts",
     "test:verbose": "jest --watch --passWithNoTests --noStackTrace --runInBand",
     "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
-    "build": "rimraf dist && tsc -p tsconfig.build.json",
-    "build:watch": "rimraf dist && tsc -p tsconfig.build.json -w",
+    "build": "rimraf dist && tsc -p tsconfig-build.json",
+    "build:watch": "rimraf dist && tsc -p tsconfig-build.json -w",
     "up": "npm run build && docker-compose up -d",
     "down": "docker-compose down",
     "check": "npm-check -s -u",
@@ -61,6 +61,7 @@
     "express": "^4.17.3",
     "fast-glob": "^3.2.11",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
     "mongodb": "^3.5.1",
     "validator": "^13.7.0"
   },
