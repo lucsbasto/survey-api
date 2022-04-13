@@ -17,10 +17,6 @@ const makeAddAccount = (): AddAccount => {
   }
   return new AddAccountStub()
 }
-interface SutTypes {
-  sut: SignUpController
-  addAccountStub: AddAccount
-}
 
 const makeValidation = (): Validation => {
   class ValidationStub implements Validation {
@@ -40,7 +36,7 @@ const makeAuthentication = (): Authentication => {
   return new AuthenticationStub()
 }
 
-interface SutTypes {
+type SutTypes = {
   sut: SignUpController
   addAccountStub: AddAccount
   validationStub: Validation
