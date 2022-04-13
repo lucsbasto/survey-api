@@ -4,6 +4,7 @@ import { makeAddSurveyController } from '../factories/controllers/survey/add-sur
 import { makeLoadSurveyController } from '../factories/controllers/survey/load-surveys/load-surveys-controller-factory'
 import { adminAuth } from '../middlewares/admin-auth'
 import { auth } from '../middlewares/auth'
+
 export default (router: Router): void => {
   router.post('/surveys', adminAuth, adaptRoute(makeAddSurveyController()))
   router.get('/surveys', auth, adaptRoute(makeLoadSurveyController()))

@@ -1,7 +1,7 @@
-import { LoginController } from '../../../../../presentation/controllers/login/login/login-controller'
-import { Controller } from '../../../../../presentation/protocols'
 import { makeLoginValidation } from './login-validation-factory'
-import { makeDbAuthentication } from '../../../usecases/acccount/authentication/db-authentication-factory'
+import { LoginController } from '@/presentation/controllers/login/login/login-controller'
+import { Controller } from '@/presentation/protocols'
+import { makeDbAuthentication } from '@/main/factories/usecases/acccount/authentication/db-authentication-factory'
 
 export const makeLoginController = (): Controller => {
   const validationComposite = makeLoginValidation()
