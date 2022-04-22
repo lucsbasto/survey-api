@@ -26,7 +26,7 @@ const makeSut = (): SutTypes => {
 }
 
 const makeAddSurveyRepository = (): AddSurveyRepository => {
-  class AddSurveyRepositoryStub {
+  class AddSurveyRepositoryStub implements AddSurveyRepository {
     async add (data: AddSurveyModel): Promise<void> {
       return new Promise(resolve => resolve(null))
     }
