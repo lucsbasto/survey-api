@@ -2,11 +2,11 @@ import { MongoHelper } from '../helpers/mongo-helper'
 import {
   SurveyResultRepository,
   SurveyResultModel,
-  SaveSurveyResultModel
+  SaveSurveyResultParams
 } from '@/data/usecases/survey-result/save-survey-result/db-save-survey-result-protocols'
 
 export class SurveyResultMongoRepository implements SurveyResultRepository {
-  async save (data: SaveSurveyResultModel): Promise<SurveyResultModel> {
+  async save (data: SaveSurveyResultParams): Promise<SurveyResultModel> {
     const surveyResultCollection = await MongoHelper.getCollection('surveyResults')
     const surveyResult = await surveyResultCollection.findOneAndUpdate({
       accountId: data.accountId,

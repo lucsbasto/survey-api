@@ -1,7 +1,7 @@
 import { Collection } from 'mongodb'
 import { MongoHelper } from '../helpers/mongo-helper'
 import { SurveyModel } from '@/domain/models/survey'
-import { AddSurveyModel } from '@/data/usecases/survey/add-survey/db-add-survey-protocols'
+import { AddSurveyParams } from '@/data/usecases/survey/add-survey/db-add-survey-protocols'
 import { AccountModel } from '../../../../domain/models/account'
 import { SurveyResultMongoRepository } from './survey-result-mongo-repository'
 
@@ -36,7 +36,7 @@ describe('Survey Result Mongo Repository', () => {
     return account.ops && MongoHelper.map(account.ops[0])
   }
 
-  const makeFakeSurveyData = (): AddSurveyModel => ({
+  const makeFakeSurveyData = (): AddSurveyParams => ({
     question: 'any_question',
     answers: [{
       image: 'any_image',
