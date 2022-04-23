@@ -1,11 +1,11 @@
 import { MongoHelper } from '../helpers/mongo-helper'
 import {
-  SaveSurveyResultRepository,
+  SurveyResultRepository,
   SurveyResultModel,
   SaveSurveyResultModel
 } from '@/data/usecases/survey-result/save-survey-result/db-save-survey-result-protocols'
 
-export class SurveyResultMongoRepository implements SaveSurveyResultRepository {
+export class SurveyResultMongoRepository implements SurveyResultRepository {
   async save (data: SaveSurveyResultModel): Promise<SurveyResultModel> {
     const surveyResultCollection = await MongoHelper.getCollection('surveyResults')
     const surveyResult = await surveyResultCollection.findOneAndUpdate({
