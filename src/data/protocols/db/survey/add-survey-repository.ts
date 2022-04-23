@@ -1,4 +1,4 @@
-import { AddSurveyModel } from '@/domain/usecases/add-survey'
+import { AddSurveyModel } from '@/domain/usecases/survey/add-survey'
 
 export class AddSurveyRepository {
   async add (data: AddSurveyModel): Promise<void> {
