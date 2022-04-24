@@ -19,7 +19,7 @@ export const mockAddAccount = (): AddAccount => {
         email: 'any_email@mail.com',
         password: 'any_password'
       }
-      return new Promise(resolve => resolve(fakeAccount))
+      return Promise.resolve(fakeAccount)
     }
   }
   return new AddAccountStub()

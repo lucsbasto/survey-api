@@ -26,7 +26,7 @@ export const mockLoadSurveyByIdRepository = (): any => {
 export const mockAddSurveyRepository = (): any => {
   class AddSurveyStub implements AddSurveyRepository {
     async add (data: AddSurveyParams): Promise<void> {
-      return new Promise(resolve => resolve(null))
+      return Promise.resolve(null)
     }
   }
   return new AddSurveyStub()

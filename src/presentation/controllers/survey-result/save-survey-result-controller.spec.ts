@@ -47,14 +47,14 @@ describe('SaveSurveyResult Controller', () => {
   })
   test('should call LoadSurveyById with correct values', async () => {
     const { sut, loadSurveyByIdStub } = makeSut()
-    const loadByIdSpy = jest.spyOn(loadSurveyByIdStub, 'loadById').mockReturnValueOnce(new Promise(resolve => resolve(null)))
+    const loadByIdSpy = jest.spyOn(loadSurveyByIdStub, 'loadById').mockReturnValueOnce(Promise.resolve(null))
     await sut.handle(makeFakeRequest())
     expect(loadByIdSpy).toHaveBeenCalledWith('any_survey_id')
   })
 
   test('should return 403 if LoadSurveyById returns null', async () => {
     const { sut, loadSurveyByIdStub } = makeSut()
-    jest.spyOn(loadSurveyByIdStub, 'loadById').mockReturnValueOnce(new Promise(resolve => resolve(null)))
+    jest.spyOn(loadSurveyByIdStub, 'loadById').mockReturnValueOnce(Promise.resolve(null))
     const surveyResult = await sut.handle(makeFakeRequest())
     expect(surveyResult).toEqual(forbidden(new InvalidParamError('surveyId')))
   })
@@ -81,7 +81,7 @@ describe('SaveSurveyResult Controller', () => {
   })
   test('should call SaveSurveyResult with correct values', async () => {
     const { sut, saveSurveyResultStub } = makeSut()
-    const saveSpy = jest.spyOn(saveSurveyResultStub, 'save').mockReturnValueOnce(new Promise(resolve => resolve(null)))
+    const saveSpy = jest.spyOn(saveSurveyResultStub, 'save').mockReturnValueOnce(Promise.resolve(null))
     await sut.handle(makeFakeRequest())
     expect(saveSpy).toHaveBeenCalledWith({
       surveyId: 'any_survey_id',

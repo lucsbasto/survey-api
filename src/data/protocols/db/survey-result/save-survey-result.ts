@@ -3,6 +3,6 @@ import { SaveSurveyResultParams } from '../../../../domain/usecases/survey-resul
 
 export class SurveyResultRepository {
   async save (data: SaveSurveyResultParams): Promise<SurveyResultModel> {
-    return new Promise(resolve => resolve(null))
+    return Promise.resolve(null)
   }
 }
