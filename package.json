@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/main/server.js",
     "dev": "sucrase-node src/main/server.ts",
+    "nodemon": "nodemon",
     "clearJest": "jest --clearCache",
     "postinstall": "husky install",
     "lint": "eslint . --ext .ts",
