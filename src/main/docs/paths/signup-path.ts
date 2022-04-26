@@ -26,7 +26,7 @@ export const signUpPath = {
         $ref: '#/components/badRequest'
       },
       403: {
-        $ref: '#/components/forbidden '
+        $ref: '#/components/forbidden'
       },
       404: {
         $ref: '#/components/notFound'

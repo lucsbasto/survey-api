@@ -7,6 +7,9 @@ export const signUpParamsSchema = {
     email: {
       type: 'string'
     },
+    role: {
+      type: 'string'
+    },
     password: {
       type: 'string'
     },
