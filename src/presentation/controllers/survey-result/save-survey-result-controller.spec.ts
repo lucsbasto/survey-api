@@ -7,8 +7,8 @@ import {
   SaveSurveyResult
 } from './save-survey-result-controller-protocols'
 import MockDate from 'mockdate'
-import { throwError } from '@/domain/test'
-import { mockLoadSurveyById, mockSaveSurveyResult, mockSurveyResult } from '../../test'
+import { throwError , mockSurveyResultModel } from '@/domain/test'
+import { mockLoadSurveyById, mockSaveSurveyResult } from '@/presentation/test'
 
 const makeFakeRequest = (): HttpRequest => ({
   params: {
@@ -99,6 +99,6 @@ describe('SaveSurveyResult Controller', () => {
   test('should return 200 on success', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(makeFakeRequest())
-    expect(httpResponse).toEqual(ok(mockSurveyResult()))
+    expect(httpResponse).toEqual(ok(mockSurveyResultModel()))
   })
 })
