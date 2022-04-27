@@ -28,7 +28,7 @@ export const surveyResultPath = {
         content: {
           'application/json': {
             schema: {
-              $ref: '#/schemas/saveSurveyResultParams'
+              $ref: '#/schemas/surveyResult'
             }
           }
         }
