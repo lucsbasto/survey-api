@@ -1,4 +1,4 @@
-import { LoadSurveyById, LoadSurveys, SurveyModel } from '../controllers/survey-result/save-survey-result-controller-protocols'
+import { LoadSurveyById, LoadSurveys, SurveyModel } from '../controllers/survey-result/save-survey-result/save-survey-result-controller-protocols'
 import { AddSurvey, AddSurveyParams } from '../controllers/survey/add-survey/add-survey-protocols'
 
 const mockSurvey = (): SurveyModel => ({
