@@ -1,7 +1,7 @@
 import { DbLoadSurveyResult } from './db-load-survey-result'
 import { LoadSurveyResultRepository } from './db-load-survey-result-protocols'
 import { mockLoadSurveyResultRepository } from '@/data/test'
-import { throwError } from '@/domain/test'
+import { throwError, mockSurveyResultModel } from '@/domain/test'
 
 type SutTypes = {
   sut: DbLoadSurveyResult
@@ -26,5 +26,10 @@ describe('DbLoadSurveyResult UseCase', () => {
     jest.spyOn(loadSurveyResultRepositoryStub, 'loadBySurveyId').mockImplementationOnce(throwError)
     const error = sut.load('any_survey_id')
     expect(error).rejects.toThrow()
+  })
+  test('should return a surveyResultModel on success', async () => {
+    const { sut } = makeSut()
+    const surveyResultModel = await sut.load('any_survey_id')
+    expect(surveyResultModel).toEqual(mockSurveyResultModel())
   })
 })
