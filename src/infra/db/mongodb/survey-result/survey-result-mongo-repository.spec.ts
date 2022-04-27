@@ -60,19 +60,17 @@ describe('Survey Result Mongo Repository', () => {
       const sut = makeSut()
       const surveyData = await makeSurvey()
       const account = await makeAccount()
-      const surveyResult = await sut.save({
+      await sut.save({
         surveyId: surveyData.id,
         accountId: account.id,
         answer: surveyData.answers[0].answer,
         date: new Date()
       })
+      const surveyResult = await surveyResultCollection.findOne({
+        surveyId: surveyData.id,
+        accountId: account.id
+      })
       expect(surveyResult).toBeTruthy()
-      expect(surveyResult.surveyId).toEqual(surveyData.id.toString())
-      expect(surveyResult.answers[0].answer).toBe(surveyData.answers[0].answer)
-      expect(surveyResult.answers[0].count).toBe(1)
-      expect(surveyResult.answers[0].percent).toBe(100)
-      expect(surveyResult.answers[1].count).toBe(0)
-      expect(surveyResult.answers[1].percent).toBe(0)
     })
 
     test('Should update a survey result if its not new', async () => {
@@ -85,19 +83,17 @@ describe('Survey Result Mongo Repository', () => {
         answer: surveyData.answers[1].answer,
         date: new Date()
       })
-      const surveyResult = await sut.save({
+      await sut.save({
         surveyId: surveyData.id,
         accountId: account.id,
         answer: surveyData.answers[1].answer,
         date: new Date()
       })
-      expect(surveyResult).toBeTruthy()
-      expect(surveyResult.surveyId).toEqual(surveyData.id.toString())
-      expect(surveyResult.answers[0].answer).toBe(surveyData.answers[1].answer)
-      expect(surveyResult.answers[0].count).toBe(1)
-      expect(surveyResult.answers[0].percent).toBe(100)
-      expect(surveyResult.answers[1].count).toBe(0)
-      expect(surveyResult.answers[1].percent).toBe(0)
+      const surveyResult = await surveyResultCollection.find({
+        surveyId: surveyData.id,
+        accountId: account.id
+      }).toArray()
+      expect(surveyResult.length).toBe(1)
     })
   })
   describe('loadBySurveyId()', () => {
