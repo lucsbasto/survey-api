@@ -1,6 +1,6 @@
 import { DbSaveSurveyResult } from './db-save-survey-result.'
 import MockDate from 'mockdate'
-import { SurveyResultRepository } from '@/data/protocols/db/survey-result/save-survey-result'
+import { SurveyResultRepository } from '@/data/protocols/db/survey-result/save-survey-result-repository'
 import { throwError, mockSaveSurveyResultParams, mockSurveyResultModel } from '@/domain/test'
 import { mockSurveyResultRepository } from '@/data/test/mock-db-save-survey-result'
 
