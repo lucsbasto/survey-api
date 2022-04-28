@@ -1,9 +1,9 @@
 import { mockLoadSurveyById, mockLoadSurveyResult } from '@/presentation/test'
 import { HttpRequest, LoadSurveyById, LoadSurveyResult } from './load-survey-result-controller-protocols'
 import { LoadSurveyResultController } from './load-survey-result-controller'
-import { forbidden, serverError } from '@/presentation/helpers/http/http-helper'
+import { forbidden, ok, serverError } from '@/presentation/helpers/http/http-helper'
 import { InvalidParamError } from '@/presentation/errors'
-import { throwError } from '@/domain/test'
+import { throwError, mockSurveyResultModel } from '@/domain/test'
 
 type SutTypes = {
   sut: LoadSurveyResultController
@@ -55,5 +55,10 @@ describe('LoadSurveyResult Controller', () => {
     jest.spyOn(loadSurveyResultStub, 'load').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(makeRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
+  })
+  test('should return 200 if LoadSurveyResult throws', async () => {
+    const { sut } = makeSut()
+    const httpResponse = await sut.handle(makeRequest())
+    expect(httpResponse).toEqual(ok(mockSurveyResultModel()))
   })
 })
