@@ -27,7 +27,7 @@ describe('Survey Result Mongo Repository', () => {
     await accountCollection.deleteMany({})
   })
 
-  const makeFakeSurveyData = (): AddSurveyParams => ({
+  const mockSurveyData = (): AddSurveyParams => ({
     question: 'any_question',
     answers: [{
       image: 'any_image',
@@ -41,7 +41,7 @@ describe('Survey Result Mongo Repository', () => {
   })
 
   const makeSurvey = async (): Promise<SurveyModel> => {
-    const surveyData = makeFakeSurveyData()
+    const surveyData = mockSurveyData()
     const survey = await surveyCollection.insertOne(surveyData)
     return survey.ops && MongoHelper.map(survey.ops[0])
   }
