@@ -1,5 +1,8 @@
+import { LoadSurveyResult } from '../../domain/usecases/survey-result/load-survey-result'
 import { LoadSurveyById, LoadSurveys, SurveyModel } from '../controllers/survey-result/save-survey-result/save-survey-result-controller-protocols'
 import { AddSurvey, AddSurveyParams } from '../controllers/survey/add-survey/add-survey-protocols'
+import { SurveyResultModel } from '@/domain/models/survey-result'
+import { mockSurveyResultModel } from '../../domain/test'
 
 const mockSurvey = (): SurveyModel => ({
   id: 'any_id',
@@ -15,6 +18,15 @@ export const mockLoadSurveyById = (): LoadSurveyById => {
     }
   }
   return new LoadSurveyByIdStub()
+}
+
+export const mockLoadSurveyResult = (): LoadSurveyResult => {
+  class LoadSurveyResultStub implements LoadSurveyResult {
+    async load (id: string): Promise<SurveyResultModel> {
+      return Promise.resolve(mockSurveyResultModel())
+    }
+  }
+  return new LoadSurveyResultStub()
 }
 
 export const mockAddSurvey = (): AddSurvey => {
