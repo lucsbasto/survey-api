@@ -3,6 +3,9 @@
 [![Heroku](./badges/deployed.svg)](https://survey-api-backend.herokuapp.com/api-docs)
 [![Known Vulnerabilities](https://snyk.io/test/github/lucsbasto/survey-api/badge.svg)](https://snyk.io/test/github/lucsbasto/survey-api)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
+[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
+
+
  ## **Clean Node API**
 
 ---
